@@ -12,6 +12,20 @@ The noise level is calculated by computing the Root Mean Square (RMS) amplitude 
 
 The script also adjusts the parameters of the spectrogram calculation (n_fft and hop_length) based on the estimated tempo of the audio file to improve accuracy.
 
+Steps to run the code:
+   1. Install Python: If you don't already have Python installed on your computer, go to the official Python website and download the latest version of Python for your operating system. Follow the installation instructions to install Python on your computer.
+   2. Install Required Libraries: The code requires several Python libraries to be installed in order to run. The required libraries are librosa, matplotlib, numpy, and tkinter. Open a command prompt or terminal and type the following commands to install the libraries:
+     pip install librosa
+     pip install matplotlib
+     pip install numpy
+   3. Download the Code: Download the code and save it as a Python file with a .py extension.
+   4. Open a command prompt or terminal on your computer.
+   5. Navigate to the directory where the code file is located using the "cd" command. For example, if the code file is located in the "Downloads" folder, type the following command: cd Downloads
+   6. Run the Code: Type the following command to run the code:
+     python noise_tonal_analyzer.py
+   7. Select Audio File: A file dialog box will appear allowing you to select an audio file for analysis. Navigate to the directory where the audio file is located and select the file.
+   8. View the Results: After the code finishes running, the results will be displayed in a graph. You can view the graph in the Python IDE or by opening the generated graph image file.
+
 Limitations and errors that can occur in this code include:
 
 1. If the user selects a file format that is not supported by librosa, the code will raise an error.
