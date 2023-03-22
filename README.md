@@ -26,7 +26,7 @@ The script also adjusts the parameters of the spectrogram calculation (n_fft and
 ## Limitations and Errors
 
 - If the user selects a file format that is not supported by librosa, the code will raise an error.
-- If the audio file is too short, the code may not be able to extract meaningful information from each 15-second segment.
+- If the audio file is too short, the code may not be able to extract meaningful information.
 - If the audio file is of poor quality or has significant background noise, the results may not be accurate.
 - The values of n_fft and hop_length are based on empirical observations and may not be optimal for all types of audio files.
 - The code does not take into account the possibility of multiple tempos or key changes in the audio file.
