@@ -1,13 +1,14 @@
-import librosa
-import matplotlib.pyplot as plt
 import numpy as np
-from tkinter import filedialog
+import librosa
 import tkinter as tk
+from tkinter import filedialog
 
+# Prompt user to select audio file
 root = tk.Tk()
 root.withdraw()
 file_path = filedialog.askopenfilename()
 
+# Load audio file
 y, sr = librosa.load(file_path)
 
 # Estimate tempo
@@ -61,6 +62,40 @@ for i in range(n_segments):
     # Store results
     noise_values[i] = noise_mean
     tonal_shift_values[i] = tonal_shift
+
+# Compute onset strength envelope
+onset_env = librosa.onset.onset_strength(y=y, sr=sr)
+
+import matplotlib.pyplot as plt
+
+# Plot onset strength envelope
+plt.figure(figsize=(14, 5))
+plt.plot(librosa.times_like(onset_env), onset_env, label='Onset Strength')
+plt.xlabel('Time (s)')
+plt.ylabel('Amplitude')
+plt.title('Onset Strength Envelope')
+plt.legend()
+
+# Detect onset times
+onset_times = librosa.onset.onset_detect(onset_envelope=onset_env, sr=sr)
+
+# Compute inter-onset intervals (IOIs)
+iois = np.diff(onset_times)
+
+# Compute mean and standard deviation of IOIs
+ioi_mean = np.mean(iois)
+ioi_std = np.std(iois)
+
+# Define threshold for rhythmic change
+threshold = ioi_std * 2
+
+# Detect rhythmic changes
+changes = []
+for i, ioi in enumerate(iois):
+    if ioi > threshold:
+        start_time = onset_times[i]
+        end_time = onset_times[i+1]
+        changes.append((start_time, end_time, ioi))
 
 # Plot results
 fig, axs = plt.subplots(2, 1, sharex=True, figsize=(10, 10))
