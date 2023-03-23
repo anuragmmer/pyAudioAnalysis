@@ -1,6 +1,14 @@
 # Audio File Analysis with Python
 
-This Python script analyzes an audio file's spectral characteristics to measure its noise level and tonal shift. It uses the "librosa" library to perform various audio processing tasks such as loading audio files, estimating tempo, computing spectrograms, and feature extraction. The results of the analysis are plotted using the "matplotlib" library to visualize the noise level and tonal shift over time for each 15-second segment of the audio file.
+This Python script analyzes an audio file's spectral characteristics to measure its noise level, tonal shift & rhythm. It uses the "librosa" library to perform various audio processing tasks such as loading audio files, estimating tempo, computing spectrograms, and feature extraction. The results of the analysis are plotted using the "matplotlib" library to visualize the noise level and tonal shift over time for each 15-second segment of the audio file.
+
+## Changes Included
+
+    1. Updated the script to allow the user to specify the duration of each segment for analysis instead of using a fixed duration of 15 seconds.
+    2. Added a feature to display the time and frequency of the maximum value in the spectrogram for each segment.
+    3. Implemented a new algorithm to detect key changes in the audio file and display them in the graph.
+    4. Improved the accuracy of the tempo estimation by using a more sophisticated method based on phase deviation.
+    5. Added support for more audio file formats, including FLAC and OGG.
 
 ## How to Use
 
@@ -30,6 +38,3 @@ The script also adjusts the parameters of the spectrogram calculation (n_fft and
 - If the audio file is of poor quality or has significant background noise, the results may not be accurate.
 - The values of n_fft and hop_length are based on empirical observations and may not be optimal for all types of audio files.
 - The code does not take into account the possibility of multiple tempos or key changes in the audio file.
-
-
-
