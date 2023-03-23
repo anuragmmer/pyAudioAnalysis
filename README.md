@@ -20,7 +20,7 @@ pip install numpy`
 3. Download the Code: Download the code and save it as a Python file with a `.py` extension.
 4. Open a command prompt or terminal on your computer.
 5. Navigate to the directory where the code file is located using the `cd` command. For example, if the code file is located in the "Downloads" folder, type the following command: `cd Downloads`
-6. Run the Code: Type the following command to run the code: `python noise_taud.py`
+6. Run the Code: Type the following command to run the code: `python aud_ana.py`
 
 7. Select Audio File: A file dialog box will appear allowing you to select an audio file for analysis. Navigate to the directory where the audio file is located and select the file.
 8. View the Results: After the code finishes running, the results will be displayed in a graph. You can view the graph in the Python IDE or by opening the generated graph image file.
