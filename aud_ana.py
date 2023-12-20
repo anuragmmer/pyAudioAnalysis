@@ -112,7 +112,7 @@ average_values = (normalized_noise + normalized_tonal_shift) / 2.0
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=np.arange(n_segments) * time_interval, y=average_values, mode='lines+markers', name='Average Value'))
 fig.update_layout(
-    title='Interactive Plot of Average Values',
+    title='Pace of Analyzed Audio.',
     xaxis=dict(title='Time (seconds)'),
     yaxis=dict(title='Average Value (Scaled)'),
 )
