@@ -2,6 +2,7 @@ import numpy as np
 import librosa
 import tkinter as tk
 from tkinter import filedialog
+import plotly.graph_objects as go
 
 # Prompt user to select audio file
 root = tk.Tk()
@@ -96,6 +97,26 @@ for i, ioi in enumerate(iois):
         start_time = onset_times[i]
         end_time = onset_times[i+1]
         changes.append((start_time, end_time, ioi))
+
+from sklearn.preprocessing import MinMaxScaler
+
+# Normalize noise and tonal shift values
+scaler = MinMaxScaler(feature_range=(1, 10))
+normalized_noise = scaler.fit_transform(noise_values.reshape(-1, 1)).flatten()
+normalized_tonal_shift = scaler.fit_transform(tonal_shift_values.reshape(-1, 1)).flatten()
+
+# Calculate the average of normalized values
+average_values = (normalized_noise + normalized_tonal_shift) / 2.0
+
+# Create an interactive scatter plot with Plotly
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=np.arange(n_segments) * time_interval, y=average_values, mode='lines+markers', name='Average Value'))
+fig.update_layout(
+    title='Interactive Plot of Average Values',
+    xaxis=dict(title='Time (seconds)'),
+    yaxis=dict(title='Average Value (Scaled)'),
+)
+fig.show()
 
 # Plot results
 fig, axs = plt.subplots(2, 1, sharex=True, figsize=(10, 10))
