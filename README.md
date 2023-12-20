@@ -1,29 +1,38 @@
 # Audio File Analysis with Python
 
-This Python script analyzes an audio file's spectral characteristics to measure its noise level, tonal shift & rhythm. It uses the "librosa" library to perform various audio processing tasks such as loading audio files, estimating tempo, computing spectrograms, and feature extraction. The results of the analysis are plotted using the "matplotlib" library to visualize the noise level and tonal shift over time for each 15-second segment of the audio file.
+This Python script analyzes an audio file's spectral characteristics to measure its noise level, tonal shift & Pace. It uses the "librosa" library to perform various audio processing tasks such as loading audio files, estimating tempo, computing spectrograms, and feature extraction. The results of the analysis are plotted using the "matplotlib" & "Plotly" library to visualize the noise level and tonal shift over time for each 15-second segment of the audio file.
 
-## Changes Included
+###  Update v3.0.0 Overview
 
-    1. Updated the script to allow the user to specify the duration of each segment for analysis instead of using a fixed duration of 15 seconds.
-    2. Added a feature to display the time and frequency of the maximum value in the spectrogram for each segment.
-    3. Implemented a new algorithm to detect key changes in the audio file and display them in the graph.
-    4. Improved the accuracy of the tempo estimation by using a more sophisticated method based on phase deviation.
-    5. Added support for more audio file formats, including FLAC and OGG.
+In this update, I've introduced a new feature called "Pace," which is an average of normalized noise and tonal shift values. Additionally, I've incorporated Plotly, an interactive plotting library, to enhance the visualization of the Pace feature. This update provides a more interactive and user-friendly way to explore the data.
+
+### Changes Made
+
+1. **Added Pace Feature**: The "Pace" is now calculated as the average of normalized noise and tonal shift values for each segment.
+2. **Added Plotly for Interactive Plotting**: Replaced the static Matplotlib plots with interactive Plotly plots for better user engagement.
+3. **Scaling and Normalization**: Utilized the `MinMaxScaler` from scikit-learn to normalize the noise and tonal shift values. This ensures that both features contribute equally to the Pace, regardless of their original units.
+4. **Rescaled Pace Values**: Scaled the Pace values to a user-defined range, specifically between 1 and 10, for better visualization.
+
+### Instructions
+
+To run the updated code, make sure to install the required libraries:
+
+`pip install librosa matplotlib plotly scikit-learn`
 
 ## How to Use
 
 1. Install Python: If you don't already have Python installed on your computer, go to the [official Python website](https://www.python.org/) and download the latest version of Python for your operating system. Follow the installation instructions to install Python on your computer.
 2. Install Required Libraries: The code requires several Python libraries to be installed in order to run. The required libraries are librosa, matplotlib, numpy, and tkinter. Open a command prompt or terminal and type the following commands to install the libraries:
 `pip install librosa
-pip install matplotlib
+pip install matplotlib pip install plotly pip install scikit-learn
 pip install numpy`
-3. Download the Code: Download the code and save it as a Python file with a `.py` extension.
-4. Open a command prompt or terminal on your computer.
-5. Navigate to the directory where the code file is located using the `cd` command. For example, if the code file is located in the "Downloads" folder, type the following command: `cd Downloads`
-6. Run the Code: Type the following command to run the code: `python aud_ana.py`
+4. Download the Code: Download the code and save it as a Python file with a `.py` extension.
+5. Open a command prompt or terminal on your computer.
+6. Navigate to the directory where the code file is located using the `cd` command. For example, if the code file is located in the "Downloads" folder, type the following command: `cd Downloads`
+7. Run the Code: Type the following command to run the code: `python aud_ana.py`
 
-7. Select Audio File: A file dialog box will appear allowing you to select an audio file for analysis. Navigate to the directory where the audio file is located and select the file.
-8. View the Results: After the code finishes running, the results will be displayed in a graph. You can view the graph in the Python IDE or by opening the generated graph image file.
+8. Select Audio File: A file dialog box will appear allowing you to select an audio file for analysis. Navigate to the directory where the audio file is located and select the file.
+9. View the Results: After the code finishes running, the results will be displayed in a graph. You can view the graph in the Python IDE or by opening the generated graph image file.
 
 ## Function
 
