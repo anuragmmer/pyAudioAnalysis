@@ -1,49 +1,60 @@
-# Audio File Analysis with Python
+# Analyse Tempo, Noise, and Tonal Shift of Audio Files
 
-This Python script analyzes an audio file's spectral characteristics to measure its noise level, tonal shift & Pace. It uses the "librosa" library to perform various audio processing tasks such as loading audio files, estimating tempo, computing spectrograms, and feature extraction. The results of the analysis are plotted using the "matplotlib" & "Plotly" library to visualize the noise level and tonal shift over time for each 15-second segment of the audio file.
+This Python script utilizes the `librosa`, `numpy`, `tkinter`, and `plotly` libraries to perform a detailed analysis of an audio file. The analysis includes estimating tempo, measuring noise levels, and calculating tonal shifts over time. The results are presented in a visual representation using interactive line plots.
 
-###  Update v3.0.0 Overview
+## Prerequisites
 
-In this update, I've introduced a new feature called "Pace," which is an average of normalized noise and tonal shift values. Additionally, I've incorporated Plotly, an interactive plotting library, to enhance the visualization of the Pace feature. This update provides a more interactive and user-friendly way to explore the data.
+Before running the script, make sure you have the required libraries installed. You can install them using the following commands:
 
-### Changes Made
+```bash
+pip install numpy librosa tkinter plotly tqdm
+```
 
-1. **Added Pace Feature**: The "Pace" is now calculated as the average of normalized noise and tonal shift values for each segment.
-2. **Added Plotly for Interactive Plotting**: Replaced the static Matplotlib plots with interactive Plotly plots for better user engagement.
-3. **Scaling and Normalization**: Utilized the `MinMaxScaler` from scikit-learn to normalize the noise and tonal shift values. This ensures that both features contribute equally to the Pace, regardless of their original units.
-4. **Rescaled Pace Values**: Scaled the Pace values to a user-defined range, specifically between 1 and 10, for better visualization.
+## Usage
 
-### Instructions
+1. Run the script in a Python environment.
 
-To run the updated code, make sure to install the required libraries:
+2. A file dialog will prompt you to select an audio file for analysis.
 
-`pip install librosa matplotlib plotly scikit-learn`
+3. The script will display the selected audio file path and proceed to load the audio.
 
-## How to Use
+4. It estimates the initial tempo with default parameters and then dynamically adjusts parameters for more accurate tempo estimation.
 
-1. Install Python: If you don't already have Python installed on your computer, go to the [official Python website](https://www.python.org/) and download the latest version of Python for your operating system. Follow the installation instructions to install Python on your computer.
-2. Install Required Libraries: The code requires several Python libraries to be installed in order to run. The required libraries are librosa, matplotlib, numpy, and tkinter. Open a command prompt or terminal and type the following commands to install the libraries:
-`pip install librosa
-pip install matplotlib pip install plotly pip install scikit-learn
-pip install numpy`
-4. Download the Code: Download the code and save it as a Python file with a `.py` extension.
-5. Open a command prompt or terminal on your computer.
-6. Navigate to the directory where the code file is located using the `cd` command. For example, if the code file is located in the "Downloads" folder, type the following command: `cd Downloads`
-7. Run the Code: Type the following command to run the code: `python aud_ana.py`
+5. The optimal parameters for analysis are printed.
 
-8. Select Audio File: A file dialog box will appear allowing you to select an audio file for analysis. Navigate to the directory where the audio file is located and select the file.
-9. View the Results: After the code finishes running, the results will be displayed in a graph. You can view the graph in the Python IDE or by opening the generated graph image file.
+6. The audio file is divided into segments, and the script analyzes each segment, calculating tempo, noise (in dB), and tonal shift over time.
 
-## Function
+7. A progress bar provides feedback on the analysis progress.
 
-The noise level is calculated by computing the Root Mean Square (RMS) amplitude of the audio signal and converting it to decibels (dB). The tonal shift is calculated by computing the Chroma feature of the audio signal and then taking the absolute difference between consecutive Chroma feature vectors.
+8. The script generates a set of interactive line plots using Plotly, showcasing the temporal evolution of tempo, noise, and tonal shift.
 
-The script also adjusts the parameters of the spectrogram calculation (n_fft and hop_length) based on the estimated tempo of the audio file to improve accuracy.
+## Additional Information
 
-## Limitations and Errors
+- The `adjust_parameters` function optimizes the parameters (`n_fft` and `hop_length`) for tempo estimation based on the stability of tempo values over multiple iterations.
 
-- If the user selects a file format that is not supported by librosa, the code will raise an error.
-- If the audio file is too short, the code may not be able to extract meaningful information.
-- If the audio file is of poor quality or has significant background noise, the results may not be accurate.
-- The values of n_fft and hop_length are based on empirical observations and may not be optimal for all types of audio files.
-- The code does not take into account the possibility of multiple tempos or key changes in the audio file.
+- The `moving_average` function applies a moving average to smooth the tempo curve, providing a clearer representation of the overall trend.
+
+- The interactive line plots visualize the changes in tempo, noise levels, and tonal shifts over time, offering insights into the audio's characteristics.
+
+## Dependencies
+
+- [NumPy](https://numpy.org/): For numerical operations.
+- [Librosa](https://librosa.org/doc/main/index.html): For audio analysis and processing.
+- [Tkinter](https://docs.python.org/3/library/tkinter.html): For creating the file dialog to select an audio file.
+- [Plotly](https://plotly.com/python/): For creating interactive plots.
+- [tqdm](https://github.com/tqdm/tqdm): For displaying progress bars in the console.
+
+## Notes
+
+- Adjust the parameters as needed for your specific analysis requirements.
+- Feel free to customize the script or integrate it into your projects.
+
+## Limitations
+
+- The script assumes that the selected audio file is in a format compatible with the `librosa` library (.mp3/.wav). Ensure that your audio file is supported by `librosa` to avoid potential issues.
+
+- The accuracy of the tempo estimation and parameter adjustment is subject to the characteristics of the input audio file. Noisy or complex audio may affect the reliability of the analysis.
+
+- The script does not handle errors that may arise during the file selection or audio loading process.
+
+- The moving average applied to the tempo curve introduces a trade-off between smoothness and responsiveness to rapid changes. Adjust the `window_size` parameter accordingly based on the desired level of smoothing.
