@@ -1,6 +1,6 @@
 # Analyse Tempo, Noise, and Tonal Shift of Audio Files
 
-This Python script utilizes the `librosa`, `numpy`, `tkinter`, and `plotly` libraries to perform a detailed analysis of an audio file. The analysis includes estimating tempo, measuring noise levels, and calculating tonal shifts over time. The results are presented in a visual representation using interactive line plots.
+This Python script utilizes the `librosa`, `numpy`, `tkinter`, and `plotly` libraries to perform a detailed analysis of an audio file. The analysis includes estimating tempo, measuring noise levels, and calculating tonal shifts over time. The results are presented in a visual representation using interactive line plots. To understand the graph being plotted and the meaning behind the numbers check: [GUIDE.md](https://github.com/anuragmmer/pyAudioAnalysis/blob/main/GUIDE.md).
 
 ## Prerequisites
 
