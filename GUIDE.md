@@ -30,6 +30,12 @@
    - **Tonal Shift Values:**
      - Tonal shift measures the amount of change in the tonal content of the audio over time.
      - Higher tonal shift values suggest more significant pitch or harmonic content changes between consecutive segments. This could be indicative of a section with varied musical elements or a transition between different musical themes.
+    
+   -  **Tonal Shift of 0.1:**
+      - A tonal shift value of 0.1 suggests a relatively small or gradual change in tonal content from one segment to the next. The musical characteristics or tonal qualities in the audio are not changing dramatically.
+
+   - **Tonal Shift of 0.15:**
+     - A tonal shift value of 0.15 indicates a slightly larger or more pronounced change in tonal content between consecutive segments. There is a more noticeable shift in the musical elements, which might correspond to a change in chord progression, melody, or overall tonality.
 
 Understanding the relationships between these parameters allows for a more comprehensive analysis of the audio:
 
