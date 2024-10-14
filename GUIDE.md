@@ -1,44 +1,85 @@
-## Let's break down the interpretation of the numbers on each graph:
+# Audio BPM and Key Detection Guide
 
-1. **Tempo Graph:**
-   - **Blue Line:** Each point on the blue line represents the tempo value (in beats per minute) for a specific audio segment.
-   - **Orange Line:** Represents the smoothed tempo values obtained by applying a moving average to the original tempo values. This line provides a clearer trend by reducing short-term fluctuations.
+## Understanding the Output Values
 
-2. **Noise (dB) Graph:**
-   - **Blue Line:** Each point on the blue line represents the noise level (in decibels) for a specific audio segment. The noise level is derived from the root mean square (RMS) of the audio segment.
+When you run the audio BPM and key detection script, it provides several key outputs. This guide will help you understand what these values mean and how to interpret them.
 
-3. **Tonal Shift Graph:**
-   - **Blue Line:** Each point on the blue line represents the tonal shift value for a specific audio segment. Tonal shift is calculated based on the chroma features of the audio.
+### Key Outputs Explained
 
-## The meaning of tempo values, noise levels, and tonal shift values in the context of audio analysis:
+1. **Estimated Key**:
+   - **Definition**: This is the musical key of the audio track, which determines the tonal center around which the piece is constructed.
+   - **Example Output**: `G Minor`
+   - **Significance**: The key indicates the scale and notes that are predominantly used in the piece. Knowing the key can help musicians play along or remix the track effectively. 
 
-1. **Tempo:**
-   - **Tempo of 140 BPM (Beats Per Minute) vs. 180 BPM:**
-     - A tempo of 140 BPM implies a moderately paced musical passage, often associated with genres like pop or rock.
-     - A tempo of 180 BPM suggests a faster-paced musical passage, commonly found in genres like electronic dance music (EDM) or certain fast-paced rock and metal songs.
-     - In general, tempo reflects the speed or pace of the music. Higher BPM values indicate faster tempos, while lower BPM values suggest slower tempos.
+   **Musical Keys**: Common keys include:
+   - Major Keys: C, D, E, F, G, A, B
+   - Minor Keys: C Minor, D Minor, E Minor, F Minor, G Minor, A Minor, B Minor
 
-2. **Noise Level (in dB):**
-   - **Noise Level of -10 dB:**
-     - Indicates a relatively noisy segment with a high level of background noise. This could be due to instrument sounds, ambient noise, or other audio artefacts.
-     - Keep in mind that dB values are logarithmic, so a small change in dB represents a significant change in sound intensity. More negative dB values indicate quieter audio.
-   
-   - **Noise Level of -10 dB:**
-     - Low Noise Level (e.g., -40 dB): Suggests a quieter segment with minimal background noise. Lower values indicate cleaner audio without much interference or extraneous sounds.
+2. **Main BPM (Beats Per Minute)**:
+   - **Definition**: This value represents the average tempo of the track measured in beats per minute.
+   - **Example Output**: `128 BPM`
+   - **Significance**: BPM indicates how fast or slow the music is. A higher BPM usually suggests more energetic, in the case of music, suitable for dancing (e.g., EDM, pop), while lower BPMs may indicate slower genres (e.g., ballads, classical).
 
-3. **Tonal Shift:**
-   - **Tonal Shift Values:**
-     - Tonal shift measures the amount of change in the tonal content of the audio over time.
-     - Higher tonal shift values suggest more significant pitch or harmonic content changes between consecutive segments. This could be indicative of a section with varied musical elements or a transition between different musical themes.
-    
-   -  **Tonal Shift of 0.1:**
-      - A tonal shift value of 0.1 suggests a relatively small or gradual change in tonal content from one segment to the next. The musical characteristics or tonal qualities in the audio are not changing dramatically.
+   **Typical BPM Ranges**:
+   - **60-90 BPM**: Ballads, Downtempo
+   - **90-120 BPM**: Pop, Hip-Hop, Rock
+   - **120-140 BPM**: Dance, EDM
+   - **140+ BPM**: Hardstyle, Drum and Bass
 
-   - **Tonal Shift of 0.15:**
-     - A tonal shift value of 0.15 indicates a slightly larger or more pronounced change in tonal content between consecutive segments. There is a more noticeable shift in the musical elements, which might correspond to a change in chord progression, melody, or overall tonality.
+### Interpretation of the Values
 
-Understanding the relationships between these parameters allows for a more comprehensive analysis of the audio:
+- **Comparing Keys**:
+  - Understanding the relationship between keys is important for musicians. For example, songs in **C Major** and **A Minor** share the same key signature but evoke different emotions. C Major is often bright and happy, while A Minor may sound more somber.
 
-- A high tempo with a simultaneous increase in tonal shift might indicate an energetic and musically dynamic section.
-- An increase in noise level alongside a rise in tempo could suggest a section with more intense and lively audio, potentially with louder instruments or vocals.
-- Conversely, decreasing noise level and tonal shift might signal a quieter and more stable part of the audio.
+- **Comparing BPM**:
+  - When comparing tracks based on BPM:
+    - A track at **128 BPM** is generally suitable for upbeat dance sessions.
+    - A **70 BPM** ballad would be ideal for slow, emotional moments.
+  
+  This can help DJs decide which tracks to mix together. Mixing two tracks with very different BPMs (e.g., 70 BPM and 128 BPM) without proper transitions can disrupt the flow of a set.
+
+### Example Comparisons
+
+#### Key Comparison
+
+| Track Name           | Estimated Key    | Genre               |
+|----------------------|------------------|---------------------|
+| "Track A"            | G Minor          | Rock                |
+| "Track B"            | E Major          | Pop                 |
+| "Track C"            | C Minor          | Classical           |
+| **Comparison**       | **Related Keys** | **Emotion**         |
+|                      | G Minor, B♭ Major | Somber, Intense     |
+|                      | E Major, C♯ Minor | Bright, Uplifting   |
+|                      | C Minor, E♭ Major | Mysterious, Dark    |
+
+- **Observation**: Tracks in related keys can often be mixed seamlessly.
+
+#### BPM Comparison
+
+| Track Name           | Main BPM         | Genre               |
+|----------------------|------------------|---------------------|
+| "Track A"            | 128 BPM          | EDM                 |
+| "Track B"            | 75 BPM           | R&B                 |
+| "Track C"            | 140 BPM          | Hardcore            |
+| **Comparison**       | **Intensity**    | **Suitability**     |
+|                      | Upbeat            | Dance Parties       |
+|                      | Slow              | Chill Sessions      |
+|                      | High Energy       | Raves               |
+
+- **Observation**: Mixing a track with 128 BPM and another with 140 BPM can maintain a high energy level, whereas mixing 75 BPM with a faster track may require careful transitions to keep the vibe intact.
+
+### Practical Application
+
+- **For DJs**: Understanding the key and BPM helps in creating a seamless flow in their sets. Choosing tracks with compatible keys and BPM ensures a more enjoyable experience for the audience.
+  
+- **For Musicians**: Knowing the key aids in improvisation or composition. A musician can easily determine which chords or notes will harmonize with the track.
+
+- **For Producers**: Producers can use this information to create remixes or mashups that maintain musical coherence.
+
+---
+
+### Conclusion
+
+Understanding the **Estimated Key** and **Main BPM** is crucial for anyone working with music, whether for performance, production, or enjoyment. The values provided by the script offer valuable insights that can enhance the musical experience. By comparing these values across different tracks, users can make informed decisions about how to mix, remix, or analyze their music effectively.
+
+Feel free to experiment with the script and see how it performs with various audio tracks! Happy music-making! 🎶
