@@ -1,6 +1,6 @@
 # Audio BPM and Key Detection Script
 
-This Python script allows you to analyze an audio file (`.mp3`, `.wav`, `.aac`) and determine the **BPM (Beats Per Minute)** and **Key** of the track. It also provides the option to display a graph showing the average BPM every 10 seconds.
+This Python script allows you to analyze an audio file (`.mp3`, `.wav`, `.aac`) and determine the **BPM (Beats Per Minute)** and **Key** of the track. It also provides the option to display a graph showing the average BPM every 10 seconds. (Written with the help of AI)
 
 ## Features
 
