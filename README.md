@@ -28,15 +28,6 @@ For detecting the **musical key**, the following steps are used:
 2. **Peak Frequency Detection**: The script identifies the 10 most prominent frequency peaks.
 3. **Mapping to Musical Keys**: The script maps the dominant frequencies to the nearest musical keys using the **equal temperament** scale and assigns a musical note to the strongest peak.
 
-#### Key Formula:
-- Musical keys are based on the relation:  
-  \[
-  \text{Half steps from A4} = 12 \times \log_2\left(\frac{f_{\text{dominant}}}{f_{\text{A4}}}\right)
-  \]
-  Where \( f_{\text{A4}} \) is 440 Hz and \( f_{\text{dominant}} \) is the dominant frequency.
-
----
-
 ## Libraries Used
 
 ### Python Libraries
