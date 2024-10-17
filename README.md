@@ -1,110 +1,73 @@
-# Audio BPM and Key Detection Script
+# BPM Analyzer
 
-This Python script allows you to analyze an audio file (`.mp3`, `.wav`, `.aac`) and determine the **BPM (Beats Per Minute)** and **Key** of the track. It also provides the option to display a graph showing the average BPM every 10 seconds. (Written with the help of AI)
+## Overview
 
-## Features
+This script is designed to analyze the tempo (in beats per minute, BPM) of audio files. It provides an overall tempo estimation and can perform segment-by-segment BPM analysis for detailed insights into the audio file's rhythm.
 
-- Supports `.mp3`, `.wav`, `.aac` audio formats.
-- Detects the **musical key** of the audio track.
-- Calculates the **average BPM** (main BPM) of the audio track.
-- Optionally plots a graph showing the BPM trend across the track.
-  
----
+## Why
 
-## How the Script Works
+Analyzing the BPM of audio files is useful for various purposes, such as:
+- Music production and DJing, where you need to match tracks with similar BPMs.
+- Not limited to musical files only, the script can handle non-musical files as well for most use cases.
+- Audio analysis for research purposes.
+- Identifying tempo variations within a track.
 
-### BPM Calculation:
+This script simplifies the process by converting audio files into WAV format (if necessary) and performing BPM calculations automatically.
 
-To determine the **BPM**, the script uses the following steps:
-1. **Filtering Audio**: A **bandpass filter** is applied to isolate the frequency range where beats typically occur (0.5 Hz to 5 Hz).
-2. **Autocorrelation**: The filtered audio is divided into 5-second windows. For each window, an **autocorrelation** function is computed to find periodic patterns in the signal.
-3. **Peak Detection**: Peaks in the autocorrelation represent beats. By measuring the time intervals between peaks, we can calculate the BPM for each window.
-4. **Main BPM**: The script calculates the **mode** (most frequent value) of the BPM across all windows to determine the **main BPM** of the audio track.
+## What
 
-### Key Detection:
+- The script accepts multiple audio file types (WAV, MP3, AAC, M4A) and converts them into WAV format for processing.
+- It estimates the overall BPM of the audio file and, optionally, performs a detailed analysis of BPMs across smaller segments of the track.
+- Outputs a summary of the BPM analysis, including mean, median, and standard deviation of the BPMs detected across segments.
+- Detects large tempo variations between segments and alerts if there is a significant difference.
 
-For detecting the **musical key**, the following steps are used:
-1. **Fourier Transform**: The script computes the **Fourier Transform** of the audio data to extract the dominant frequencies in the track.
-2. **Peak Frequency Detection**: The script identifies the 10 most prominent frequency peaks.
-3. **Mapping to Musical Keys**: The script maps the dominant frequencies to the nearest musical keys using the **equal temperament** scale and assigns a musical note to the strongest peak.
+## How
 
-## Libraries Used
+### Requirements
 
-### Python Libraries
+Make sure you have the following installed:
+- Python 3.x
+- `numpy`
+- `librosa`
+- `pydub`
+- `tqdm`
+- `tkinter`
 
-- `numpy`: Used for numerical computations like the **Fourier Transform** and autocorrelation.
-- `scipy`: Provides functions for **signal processing** (e.g., filtering, peak detection, and autocorrelation).
-- `pydub`: Converts different audio formats (e.g., `.mp3`, `.aac`) to `.wav` for easy manipulation.
-- `matplotlib`: Used to plot the graph of the **BPM** over time.
-- `tqdm`: A progress bar library used to show progress during BPM calculation.
-
----
-
-## Installation
-
-### Prerequisites
-
-- **Python 3.7+**
-- **pip** (Python's package manager)
-
-### Installing Dependencies
-
-To install the required libraries, use the following command:
+You can install these dependencies using pip:
 
 ```bash
-pip install numpy scipy pydub matplotlib tqdm
+pip install numpy librosa pydub tqdm
 ```
 
-For **Windows** users, you may also need to install **ffmpeg** to work with `.mp3` and `.aac` files:
+### Usage
 
-- Download **ffmpeg** from: https://ffmpeg.org/download.html
-- Add **ffmpeg** to your system's environment **PATH**.
+1. Run the script:
+   ```bash
+   python bpm_analyser.py
+   ```
 
----
+2. A file selection window will open. Choose the audio file you want to analyze.
 
-## Usage
+3. The script will ask if you'd like to see detailed segment-by-segment BPM analysis. Enter `y` for yes or `n` for no.
 
-1. Clone this repository or download the script.
-   
-2. Open a terminal or command prompt and navigate to the folder containing the script.
+4. The script will process the file, convert it to WAV if necessary, and perform beat detection and tempo estimation.
 
-3. Run the script using Python:
+5. The results will be printed in the console, including the overall BPM and a detailed segment analysis (if requested).
+
+### Example Output
 
 ```bash
-python bpm_key.py
+Estimated overall tempo: 128.00 BPM
+Total segments analyzed: 12
+Valid BPM values detected: 10
+Mean segment BPM: 127.50
+Median segment BPM: 127.00
+Standard deviation: 1.50
+Range: 125.00 - 130.00 BPM
+Rounded BPM: 128
 ```
 
-4. A dialog will appear to let you select an audio file.
+### Notes
 
-5. After selecting the file, the script will:
-   - Convert the file to WAV format (if needed).
-   - Estimate the **Key** of the audio track.
-   - Calculate the **BPM** and show the most frequent BPM (Main BPM).
-   - Optionally, it will plot a graph of BPM over time if you choose to view it.
-
----
-
-## Limitations
-
-1. **BPM Accuracy**: 
-   - The **BPM detection** process may struggle with complex or highly syncopated rhythms. The result may be inaccurate for tracks with many variable tempos or unusual time signatures.
-
-2. **Key Detection**:
-   - The **key detection** uses a basic mapping of dominant frequencies to musical notes. Tracks with **modulations** (changes in key) or very **complex harmonic structures** may result in incorrect key estimations. Additionally, detecting **minor** keys (versus major) is done by approximation.
-
-3. **Audio Format Conversion**:
-   - The script uses `pydub` to convert `.mp3` and `.aac` files to `.wav` for analysis. The quality of conversion may impact results, and this adds overhead to the process.
-
-4. **Processing Time**:
-   - For long tracks, the analysis process can take time, expect slower performance on **large files**.
-
----
-
-## Conclusion
-
-This script provides a simple and effective way to analyze **BPM** and **Key** of audio files, but it does come with some limitations due to the complexity of musical compositions. It is best suited for straightforward tracks with consistent tempo and key. Feel free to explore and improve the algorithm to suit your use cases better!
-
----
-
-Enjoy using the script and feel free to contribute or report issues! 😊
-
+- Only realistic BPM values between 40 and 250 are considered valid.
+- The script alerts you if there's a significant BPM difference (greater than 20) between segments.
